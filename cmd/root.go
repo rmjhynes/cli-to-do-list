@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"fmt"
+	"cli-to-do-list/tui"
 
 	"github.com/spf13/cobra"
 )
@@ -14,8 +14,7 @@ var rootCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		// Start TUI
-		// tui.startTUI()
-		fmt.Println("starting TUI...")
+		tui.ListRecords()
 	},
 }
 
