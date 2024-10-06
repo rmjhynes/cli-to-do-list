@@ -1,9 +1,12 @@
 package main
 
 import (
-	"github.com/rmjhynes/cli-to-do-list/cmd"
+	"cli-to-do-list/cmd"
+	"fmt"
 )
 
 func main() {
-	cmd.Execute()
+	if err := cmd.Execute(); err != nil {
+		fmt.Println(err)
+	}
 }

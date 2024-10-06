@@ -1,4 +1,4 @@
-module github.com/rmjhynes/cli-to-do-list
+module cli-to-do-list
 
 go 1.23.2
 
