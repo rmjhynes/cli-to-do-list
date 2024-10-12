@@ -6,12 +6,16 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
+	"text/tabwriter"
 )
 
 // get todo list data from csv file
 // print to the console in tabular format
 
 func ListRecords() {
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.Debug)
+
 	f, err := os.Open("/Users/rmjhynes/devops/golang/cli-to-do-list/tui/data.csv")
 	if err != nil {
 		log.Fatal(err)
@@ -27,6 +31,14 @@ func ListRecords() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%+v\n", rec)
+
+		// Join the record (slice of strings) into a single string with tab separators
+		line := strings.Join(rec, "\t")
+
+		// Write the tab-separated line to the tab writer
+		fmt.Fprintln(w, line)
 	}
+
+	// Flush the writer to ensure all output is written
+	w.Flush()
 }
