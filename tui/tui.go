@@ -1,6 +1,7 @@
 package tui
 
 import (
+	"cli-to-do-list/constants"
 	"encoding/csv"
 	"fmt"
 	"io"
@@ -16,7 +17,7 @@ import (
 func ListRecords() {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.Debug)
 
-	f, err := os.Open("/Users/rmjhynes/devops/golang/cli-to-do-list/tui/data.csv")
+	f, err := os.Open(constants.TaskData)
 	if err != nil {
 		log.Fatal(err)
 	}

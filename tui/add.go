@@ -2,6 +2,7 @@ package tui
 
 import (
 	"bufio"
+	"cli-to-do-list/constants"
 	"encoding/csv"
 	"fmt"
 	"log"
@@ -9,7 +10,7 @@ import (
 )
 
 func AddRecord() {
-	f, err := os.OpenFile("/Users/rmjhynes/devops/golang/cli-to-do-list/tui/data.csv", os.O_APPEND|os.O_WRONLY, 0777)
+	f, err := os.OpenFile(constants.TaskData, os.O_APPEND|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -21,6 +22,7 @@ func AddRecord() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 
+	// Retrieve task description from user input
 	fmt.Println("Enter the to-do description:")
 	scanner.Scan()
 	description := scanner.Text()
@@ -29,6 +31,7 @@ func AddRecord() {
 		log.Fatal(err)
 	}
 
+	// Retrieve task due date from user input
 	fmt.Println("Enter the to-do due-date:")
 	scanner.Scan()
 	due_date := scanner.Text()
