@@ -1,5 +1,12 @@
 # cli-to-do-list
-A to-do list app in Go.
+A CLI based to-do list app in Go. This is my first project in Go, and the aim was purely to familiarise myself with the logic and syntax by building a very simple project.
+
+## Installation Instructions
+
+## Logic
+The files in the *cmd* directory register CLI commands using the Cobra package.
+The files in the *logic* directory contain the logic behind the CLI commands.
+
 
 ## Run Instructions
 - To list the tasks run `go run main.go`
