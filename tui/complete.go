@@ -35,7 +35,7 @@ func RemoveRecord() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Deleting row:", rowToDelete, "...")
+	fmt.Println("Marking row:", rowToDelete, "as complete...")
 
 	deleteRowByID(targetID)
 }
