@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"cli-to-do-list/tui"
+	"cli-to-do-list/logic"
 
 	"github.com/spf13/cobra"
 )
@@ -14,7 +14,7 @@ var rootCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		// Start TUI
-		tui.ListRecords()
+		logic.ListRecords()
 	},
 }
 

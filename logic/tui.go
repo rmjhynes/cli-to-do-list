@@ -1,4 +1,4 @@
-package tui
+package logic
 
 import (
 	"cli-to-do-list/constants"
