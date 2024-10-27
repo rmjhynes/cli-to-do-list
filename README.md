@@ -1,4 +1,4 @@
-# cli-to-do-list
+# CLI To Do List in Go
 A CLI based to-do list app in Go. This is my first project in Go, and the aim was purely to familiarise myself with the logic and syntax by building a very simple project.
 
 ## Installation Instructions
