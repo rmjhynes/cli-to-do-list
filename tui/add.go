@@ -8,11 +8,27 @@ import (
 	"io"
 	"log"
 	"os"
+	"strconv"
 )
 
 func AddRecord() {
-	findPreviousTaskID()
+	// Get last record ID from task list
+	lastRecord, err := findPreviousTaskID()
+	fmt.Println("Main function last record", lastRecord)
 
+	// Convert string to int so ID can be increased by 1
+	lastRecordInt, err := strconv.Atoi(lastRecord)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Increase ID by 1
+	lastRecordInt++
+
+	// Convert int back to string
+	lastRecord = strconv.Itoa(lastRecordInt)
+
+	// Open file to add a new task
 	f, err := os.OpenFile(constants.TaskData, os.O_APPEND|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
@@ -21,8 +37,10 @@ func AddRecord() {
 	// Schedule file close at the end of the function
 	defer f.Close()
 
+	// Assign a writer to write the file
 	w := csv.NewWriter(f)
 
+	// Assign Scanner to get input data from user
 	scanner := bufio.NewScanner(os.Stdin)
 
 	// Retrieve task description from user input
@@ -43,37 +61,39 @@ func AddRecord() {
 		log.Fatal(err)
 	}
 
+	// Create a record containing task data
 	record := []string{
-		"1", description, due_date,
+		lastRecord, description, due_date,
 	}
 	if err := w.Write(record); err != nil {
 		log.Fatalf("Error writing record: %v", err)
 	}
 
+	// Flush buffered data to file
 	w.Flush()
 
 	// Check for any errors during the flush
 	if err := w.Error(); err != nil {
 		log.Fatalf("Error flushing writer: %v", err)
 	}
-
-	if err := w.Error(); err != nil {
-		log.Fatalln("error writing csv:", err)
-	}
 }
 
+// Function to find the ID of the last task in the list
 func findPreviousTaskID() (string, error) {
 	f, err := os.Open(constants.TaskData)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Assign a reader to read from the file
 	r := csv.NewReader(f)
 	var lastRecord string
 
+	// Iterate through task records
 	for {
 		rec, err := r.Read()
 
+		// If end of file is reached return the last record ID
 		if err == io.EOF {
 			fmt.Println("The last record: ", lastRecord)
 			return lastRecord, nil
@@ -81,6 +101,8 @@ func findPreviousTaskID() (string, error) {
 		if err != nil {
 			return "", nil
 		}
+		// Assign current row ID as the last record in case next row
+		// is the end of the file
 		lastRecord = rec[0]
 	}
 }
