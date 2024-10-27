@@ -22,7 +22,7 @@ func RemoveRecord() {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	// Get task ID to delete
-	fmt.Println("Enter the ID of the to-do to mark as complete:")
+	fmt.Println("Enter the ID of the task you wish to mark as complete:")
 	scanner.Scan()
 	targetID := scanner.Text()
 	err = scanner.Err()
