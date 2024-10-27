@@ -14,7 +14,6 @@ import (
 func AddRecord() {
 	// Get last record ID from task list
 	lastRecord, err := findPreviousTaskID()
-	fmt.Println("Main function last record", lastRecord)
 
 	// Convert string to int so ID can be increased by 1
 	lastRecordInt, err := strconv.Atoi(lastRecord)
@@ -95,7 +94,6 @@ func findPreviousTaskID() (string, error) {
 
 		// If end of file is reached return the last record ID
 		if err == io.EOF {
-			fmt.Println("The last record: ", lastRecord)
 			return lastRecord, nil
 		}
 		if err != nil {
