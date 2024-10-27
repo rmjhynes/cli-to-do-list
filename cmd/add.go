@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"cli-to-do-list/tui"
+	"cli-to-do-list/logic"
 
 	"github.com/spf13/cobra"
 )
@@ -12,7 +12,7 @@ var addToDo = &cobra.Command{
 	Long:  "Add a to-do item to your list of things to get done.",
 
 	Run: func(cmd *cobra.Command, args []string) {
-		tui.AddRecord()
+		logic.AddRecord()
 	},
 }
 

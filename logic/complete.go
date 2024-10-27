@@ -1,4 +1,4 @@
-package tui
+package logic
 
 import (
 	"bufio"

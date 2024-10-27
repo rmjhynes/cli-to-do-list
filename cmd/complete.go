@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"cli-to-do-list/tui"
+	"cli-to-do-list/logic"
 
 	"github.com/spf13/cobra"
 )
@@ -12,7 +12,7 @@ var completeToDo = &cobra.Command{
 	Long:  "Mark a to-do as complete to remove it from the list.",
 
 	Run: func(cmd *cobra.Command, args []string) {
-		tui.RemoveRecord()
+		logic.RemoveRecord()
 	},
 }
 
