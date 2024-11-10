@@ -2,10 +2,11 @@
 A CLI based to-do list app in Go. This is my first project in Go, and the aim was purely to familiarise myself with the logic and syntax by building a very simple project.
 
 ## Installation Instructions
+Add the absolute path to your `data.csv` file (stored in /data) to a `.env` file. The code is setup to use the environment variable `TASK_DATA_FILE` but this can be changed in `constants/paths.go`.
 
 ## Logic
-The files in the *cmd* directory register CLI commands using the Cobra package.
-The files in the *logic* directory contain the logic behind the CLI commands.
+The files in the `cmd` directory register CLI commands using the Cobra package.
+The files in the `logic` directory contain the logic behind the CLI commands.
 
 
 ## Run Instructions
