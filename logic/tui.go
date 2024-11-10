@@ -11,7 +11,7 @@ import (
 	"text/tabwriter"
 )
 
-// get todo list data from csv file
+// Get todo list data from csv file and
 // print to the console in tabular format
 
 func ListRecords() {
