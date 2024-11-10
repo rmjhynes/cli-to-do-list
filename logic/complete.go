@@ -11,7 +11,7 @@ import (
 )
 
 func RemoveRecord() {
-	f, err := os.OpenFile(constants.TaskData, os.O_APPEND|os.O_WRONLY, 0777)
+	f, err := os.OpenFile(constants.GetTaskDataFile(), os.O_APPEND|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func RemoveRecord() {
 
 // Function to find a row by the unique ID
 func findRowByID(targetID string) ([]string, error) {
-	f, err := os.Open(constants.TaskData)
+	f, err := os.Open(constants.GetTaskDataFile())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,7 +70,7 @@ func findRowByID(targetID string) ([]string, error) {
 
 // Function to delete task using task ID
 func deleteRowByID(targetID string) error {
-	f, err := os.Open(constants.TaskData)
+	f, err := os.Open(constants.GetTaskDataFile())
 	// Create a temporary file in the same directory to store updated rows
 	tempFile, err := os.Create("tempFile" + ".tmp")
 	if err != nil {
@@ -110,7 +110,7 @@ func deleteRowByID(targetID string) error {
 	tempFile.Close()
 
 	// Replace the original file with the temporary file
-	if err := os.Rename(tempFile.Name(), constants.TaskData); err != nil {
+	if err := os.Rename(tempFile.Name(), constants.GetTaskDataFile()); err != nil {
 		return fmt.Errorf("could not replace original file: %v", err)
 	}
 

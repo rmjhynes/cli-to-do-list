@@ -11,13 +11,13 @@ import (
 	"text/tabwriter"
 )
 
-// get todo list data from csv file
+// Get todo list data from csv file and
 // print to the console in tabular format
 
 func ListRecords() {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.Debug)
 
-	f, err := os.Open(constants.TaskData)
+	f, err := os.Open(constants.GetTaskDataFile())
 	if err != nil {
 		log.Fatal(err)
 	}
