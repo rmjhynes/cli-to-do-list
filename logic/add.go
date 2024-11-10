@@ -28,7 +28,7 @@ func AddRecord() {
 	lastRecord = strconv.Itoa(lastRecordInt)
 
 	// Open file to add a new task
-	f, err := os.OpenFile(constants.TaskData, os.O_APPEND|os.O_WRONLY, 0777)
+	f, err := os.OpenFile(constants.GetTaskDataFile(), os.O_APPEND|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,7 +79,7 @@ func AddRecord() {
 
 // Function to find the ID of the last task in the list
 func findPreviousTaskID() (string, error) {
-	f, err := os.Open(constants.TaskData)
+	f, err := os.Open(constants.GetTaskDataFile())
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,3 +1,20 @@
 package constants
 
-const TaskData = "/Users/rmjhynes/devops/golang/cli-to-do-list/data/data.csv"
+import (
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
+)
+
+// Get the path to the data file from .env file
+func GetTaskDataFile() string {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	TaskData := os.Getenv("TASK_DATA_FILE")
+
+	return TaskData
+}
